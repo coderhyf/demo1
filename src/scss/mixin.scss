@@ -1,0 +1,107 @@
+@import "./variable"; /*引入配置*/
+/*通过该函数设置字体颜色，后期方便统一管理；*/
+@mixin fontc($color) {
+  color: $color;
+  [data-theme="theme1"] & {
+    color: $fontc1;
+  }
+  [data-theme="theme2"] & {
+    color: $fontc1;
+  }
+  [data-theme="theme3"] & {
+    color: $fontc1;
+  }
+}
+// 图标颜色
+@mixin icon($color) {
+  [data-theme="theme1"] & {
+    color: $btn2;
+  }
+  [data-theme="theme2"] & {
+    color: $btn3;
+  }
+  [data-theme="theme3"] & {
+    color: $btn1;
+  }
+}
+// 图标颜色
+@mixin iconTop($color) {
+  [data-theme="theme1"] & {
+    border-top-color: $btn2;
+  }
+  [data-theme="theme2"] & {
+    border-top-color: $btn3;
+  }
+  [data-theme="theme3"] & {
+    border-top-color: $btn1;
+  }
+}
+// 图标边框
+@mixin iconB($color) {
+  [data-theme="theme1"] & {
+    border: 1px solid $btn2;
+  }
+  [data-theme="theme2"] & {
+    border: 1px solid $btn3;
+  }
+  [data-theme="theme3"] & {
+    border: 1px solid $btn1;
+  }
+}
+@mixin btn($color) {
+  background: $color !important;
+  [data-theme="theme1"] & {
+    background: $btn2 !important;
+  }
+  [data-theme="theme2"] & {
+    background: $btn3 !important;
+  }
+  [data-theme="theme3"] & {
+    background: $btn1 !important;
+  }
+}
+// 按钮背景
+@mixin btn1($color) {
+  background: $color;
+  [data-theme="theme1"] & {
+    background: $btn2;
+  }
+  [data-theme="theme2"] & {
+    background: $btn3;
+  }
+  [data-theme="theme3"] & {
+    background: $btn1;
+  }
+}
+/*通过该函数设置主题颜色，后期方便统一管理；*/
+@mixin bg_color($color) {
+  background: $color;
+  [data-theme="theme1"] & {
+    background: $bac2;
+  }
+  [data-theme="theme2"] & {
+    background: $bac1;
+  }
+  [data-theme="theme3"] & {
+    background: $bac3;
+  }
+}
+
+@mixin color($stroke) {
+  [data-theme="theme1"] & {
+    stroke: $color2;
+  }
+  [data-theme="theme2"] & {
+    stroke: $color3;
+  }
+  [data-theme="theme3"] & {
+    stroke: $color1;
+  }
+}
+.defaultBtn{
+  &:hover{
+    border: 1px solid #DCDFE6;
+    color: #606266;
+    background: #FFF;
+  }
+}
