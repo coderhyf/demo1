@@ -13,6 +13,7 @@
   <!--      </li>-->
   <!--    </ul>-->
   <div>
+    <div>测试git stashu存储</div>
     <el-input placeholder="请输入内容" v-model="input2">
       <span slot="append" v-for="(item, index) in codeList" :key="index" :style="getStyle(item)">{{ item.code }}</span>
     </el-input>
