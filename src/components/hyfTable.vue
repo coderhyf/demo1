@@ -1,21 +1,23 @@
 <template>
   <!-- 表格分页 -->
   <div class="table_box">
-        <div style="text-align: right">
-          <!-- 控制列隐藏显示 -->
-<!--          <el-popover trigger="click">-->
-<!--            <el-checkbox-group v-model="item.isTrue" v-for="(item, index) in columns" :key="item.label"-->
-<!--                               @change="changeCheckbox(index)">-->
-<!--              <el-checkbox :label="item.label" :disabled="item.disabled"/>-->
-<!--            </el-checkbox-group>-->
-<!--            <i slot="reference" class=" icon el-icon-setting"/>-->
-<!--          </el-popover>-->
-        </div>
+    <div style="text-align: right">
+      <!-- 控制列隐藏显示 -->
+      <!--          <el-popover trigger="click">-->
+      <!--            <el-checkbox-group v-model="item.isTrue" v-for="(item, index) in columns" :key="item.label"-->
+      <!--                               @change="changeCheckbox(index)">-->
+      <!--              <el-checkbox :label="item.label" :disabled="item.disabled"/>-->
+      <!--            </el-checkbox-group>-->
+      <!--            <i slot="reference" class=" icon el-icon-setting"/>-->
+      <!--          </el-popover>-->
+    </div>
     <el-table :data="tableData"
               border
               @selection-change="handleSelectionChange"
+              @sort-change="sortRankChange"
               :row-class-name="tableRowClassName"
               :header-cell-style="{background:'#e8e8e8'}"
+              :default-sort="defaultSort"
               size='mini'
               ref="trendsTable">
       <slot name="time"/>
@@ -23,16 +25,15 @@
                        width="55"
                        align="center"
                        :reserve-selection='true'
-                       v-if="chekoutSow"  />
+                       v-if="chekoutSow"/>
       <el-table-column type="index"
                        :index="indexMethod"
                        align="center"
                        label="序号"
                        width="65"
-                       v-if="showIndex" />
+                       v-if="showIndex"/>
       <template v-for="(item, index) in newList">
         <el-table-column :align="item.align ? item.align : 'center'"
-
                          :key="index"
                          :prop="item.prop"
                          :label="item.label"
@@ -40,7 +41,8 @@
                          :width="item.width"
                          :min-width="item.minWidth"
                          :show-overflow-tooltip="item.tooltip ? item.tooltip : true"
-                         :sortable="item.sortTable ? item.sortTable : false"
+                         :sortable="item.sortTable ? item.sortTable : true"
+                         :sort-orders="['ascending', 'descending', 'ascending']"
                          class-name="allow-drag"
         >
           <template slot-scope="scope">
@@ -90,6 +92,11 @@ export default {
     showIndex: {
       type: Boolean,
       default: false,
+    },
+    defaultSort: {
+      type: Object,
+      default: () => {
+      }
     },
     chekoutSow: {
       type: Boolean,
@@ -167,9 +174,9 @@ export default {
         },
       });
     },
-    selectableFunc(key){
+    selectableFunc (key) {
 
-      this.$emit('selectableFunc', key)
+      this.$emit ('selectableFunc', key)
     },
     // 分页size
     handleSizeChange (val) {
@@ -183,8 +190,11 @@ export default {
     handleSelectionChange (val) {
       this.$emit ("handleSelectionChange", val);
     },
-    tableRowClassName({row, rowIndex}) {
-     if ((rowIndex + 1) % 2 === 0) {
+    sortRankChange (val) {
+      this.$emit ("sortRankChange", val);
+    },
+    tableRowClassName ({row, rowIndex}) {
+      if ((rowIndex + 1) % 2 === 0) {
         return 'success-row';
       }
     },
@@ -203,7 +213,7 @@ export default {
 };
 </script>
 
-<style  >
+<style>
 
 .el-table .success-row {
   background: #f0f0f0;

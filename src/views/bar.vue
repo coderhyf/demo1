@@ -13,7 +13,6 @@
   <!--      </li>-->
   <!--    </ul>-->
   <div>
-    <div>测试git stashu存储</div>
     <el-input placeholder="请输入内容" v-model="input2">
       <span slot="append" v-for="(item, index) in codeList" :key="index" :style="getStyle(item)">{{ item.code }}</span>
     </el-input>
@@ -27,7 +26,7 @@
     <!--          class="list-item">-->
     <!--       {{ item.label }}-->
     <!--    </span>-->
-
+    <el-button @click="add"> 加密</el-button>
   </div>
   <!--  <div>-->
   <!--    <el-tag-->
@@ -96,7 +95,8 @@ export default {
     this.dataList ()
   },
   methods: {
-
+    add () {
+    },
     getTreeName (list, id) {
 
       let _this = this
@@ -138,7 +138,7 @@ export default {
       for (let i = 0; i < len; i++) {
         const rgb = [Math.round (Math.random () * 220), Math.round (Math.random () * 240), Math.round (Math.random () * 200)]
         codeList.push ({
-          code: chars.charAt (Math.floor (Math.random () * chars.length  )),
+          code: chars.charAt (Math.floor (Math.random () * chars.length)),
           color: `rgb(${rgb})`,
           fontSize: `1${[Math.floor (Math.random () * 10)]}px`,
           padding: `${[Math.floor (Math.random () * 10)]}px`,

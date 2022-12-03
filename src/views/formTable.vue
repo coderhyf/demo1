@@ -14,6 +14,7 @@
               :chekoutSow="true"
               :currentPage="currentPage"
               :pageSize="pageSize"
+              :defaultSort="defaultSort"
               @selectableFunc="selectableFunc"
               @changeSize="handleSizeChange"
               @changeCurrent="handleCurrentChange"
@@ -44,6 +45,7 @@ export default {
   components: {HyfTable, HyfPopconfirm},
   data () {
     return {
+
       activities: [{
         content: '支持使用图标',
         timestamp: '2018-04-12 20:46',
@@ -96,16 +98,21 @@ export default {
       //   },
       // },
       tableData: [
-        {userId: "1111", username: "名字1", id: 1},
-        {userId: "22222", username: "名字2", id: 2},
-        {userId: "3333", username: "名字3", id: 3},
-        {userId: "3333", username: "名字3", id: 3},
-        {userId: "3333", username: "名字3", id: 3},
-        {userId: "3333", username: "名字3", id: 3},
+        {userId: "1111", username: "名字4", id: 1},
+        {userId: "22222", username: "名字3", id: 2},
+        {userId: "3333", username: "名字2", id: 3},
+        {userId: "3333", username: "名字1", id: 3},
+        {userId: "3333", username: "名字0", id: 3},
+        {userId: "3333", username: "名字-1", id: 3},
       ],
+      defaultSort: {
+        prop: 'username',
+        order: 'ascending'
+      },
       total: 30,
       currentPage: 1,
       pageSize: 10,
+      conut: 0
     };
   },
   methods: {
@@ -140,10 +147,11 @@ export default {
     handleSelectionChange (val) {
       console.log (val);
     },
-    getHideColist (val) {
-      console.log (val);
-    },
   },
+  getHideColist (val) {
+    console.log (val);
+  },
+
 }
 </script>
 
