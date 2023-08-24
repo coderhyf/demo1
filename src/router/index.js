@@ -48,7 +48,7 @@ const routes = [
           keepAlive: false,
           title:'cust',
         },
-        component: () => import('../views/chekboxs')
+        component: () => import('../views/热力图/chekboxs')
       },
       {
         path: '/pie',
