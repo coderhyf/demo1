@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// import v from '../'
 import "echarts-liquidfill";
 export default {
   name: "bar",

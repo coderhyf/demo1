@@ -1,4 +1,9 @@
- export function defer(maxFrameCount = 1000) {
+/**
+ * 
+ * @param {*} maxFrameCount 
+ * @returns 
+ */
+export function defer(maxFrameCount = 1000) {
   let count = 0
   // const frameCount = ref(0);
   // console.log(frameCount, '===frameCount');

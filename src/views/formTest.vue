@@ -155,7 +155,6 @@ export default {
       a.forEach (itemz => {
         item.chekbox = item.value === itemz;
       })
-      console.log (item, '======')
     })
     let elTableLine = localStorage.getItem ('to')
     if (elTableLine) {

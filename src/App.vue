@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-export default { 
+export default {
   components: {},
   data() {
     return {};
@@ -12,9 +12,16 @@ export default {
 
   mounted() {
     window.onresize = () => {
-       console.log("this.$refs.wrapper");
+      console.log("this.$refs.wrapper");
     };
     // this.a()
+    // this.$nextTick(() => {
+    //   document.addEventListener("keydown", function (e) {
+    //     if (e.key == "F12") {
+    //       e.preventDefault(); // 如果按下键F12,阻止事件
+    //     }
+    //   });
+    // });
   },
   methods: {
     beforeunloadHandler() {
@@ -162,5 +169,10 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+* {
+  user-select: none;
+  /* -webkit-user-select: none;
+    -moz-user-select: none; */
 }
 </style>
