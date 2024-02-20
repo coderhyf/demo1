@@ -1,19 +1,22 @@
 <template>
-  <el-date-picker
-    v-model="value1"
-    type="daterange"
-    start-placeholder="开始日期"
-    range-separator="至"
-    end-placeholder="结束日期"
-    value-format="yyyy-MM-dd"
-    :picker-options="pickerOptions1"
-  ></el-date-picker>
+  <div>
+    <el-date-picker
+      v-model="value1"
+      type="date"
+      value-format="yyyy-MM-dd"
+      @change="changeMonth"
+    ></el-date-picker>
+    <el-button @click="baidu">百度</el-button>
+    <iframe :src="src" width="100%" height="200px" ref="iframe"></iframe>
+  </div>
 </template>
 <script>
 export default {
   name: "",
   data() {
     return {
+      iframeWin: {},
+      src:'',
       value1: "", // 日
       pickerMinDate: null,
       day31: 31 * 24 * 3600 * 1000,
@@ -50,6 +53,27 @@ export default {
       //   },
       // },
     };
+  },
+  mounted() {
+  },
+  methods: {
+    baidu(){
+      this.src = 'https://blog.csdn.net/u010227042/article/details/119839361?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-119839361-blog-88070050.235%5Ev40%5Epc_relevant_anti_vip&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-119839361-blog-88070050.235%5Ev40%5Epc_relevant_anti_vip&utm_relevant_index=5'
+      this.iframeWin.postMessage({
+        cmd: 'getFormJson',
+        params: {}
+      }, '*')
+    },
+    changeMonth(value) {
+      let date = new Date(value);
+      let month = (date.getMonth() + 1).toString().padStart(2, "0");
+      let year = date.getFullYear();
+      let startTime = year + "" + month + "01";
+      let day = new Date(year, month, 0);
+      let endTime = year + "" + month + "" + day.getDate();
+      console.log(startTime, "startTime");
+      console.log(endTime, "endTime ");
+    },
   },
 };
 </script>

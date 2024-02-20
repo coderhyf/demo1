@@ -11,32 +11,19 @@ export default {
   },
 
   mounted() {
-    window.onresize = () => {
-      console.log("this.$refs.wrapper");
-    };
-    // this.a()
+    // this.$nextTick(() => {
+
+    // });
+
     // this.$nextTick(() => {
     //   document.addEventListener("keydown", function (e) {
-    //     if (e.key == "F12") {
+    //     if (e.key == "F12" || e.code == 'KeyJ' || e.code == 'KeyI') {
     //       e.preventDefault(); // 如果按下键F12,阻止事件
     //     }
-    //   });
+    //   }); 
     // });
   },
-  methods: {
-    beforeunloadHandler() {
-      console.log(eeeee);
-    },
-    a() {
-      window.onresize = () => {
-        return () => {
-          this.$nextTick(() => {
-            console.log("this.$refs.wrapper");
-          });
-        };
-      };
-    },
-  },
+  methods: {},
 };
 </script>
 <style lang="scss">
