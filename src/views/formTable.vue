@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button>2</el-button>
+    <el-button>23333</el-button>
     <el-popover trigger="click">
       <el-checkbox-group
         v-model="item.isTrue"
