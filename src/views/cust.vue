@@ -1,6 +1,6 @@
 <template>
   <div>
-    单独合并的分支6666
+    测试合并分支22222
   </div>
 </template>
 <script>
