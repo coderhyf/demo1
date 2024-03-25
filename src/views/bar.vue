@@ -5,16 +5,32 @@
       type="date"
       value-format="yyyy-MM-dd"
       @change="changeMonth"
+      :picker-options="pickerOptions"
     ></el-date-picker>
     <el-button @click="baidu">百度</el-button>
-    <iframe :src="src" width="100%" height="200px" ref="iframe"></iframe>
+ 
+    <!-- <iframe :src="src" width="100%" height="200px" ref="iframe"></iframe> -->
   </div>
 </template>
 <script>
+import moment from 'moment'
 export default {
   name: "",
   data() {
     return {
+      a:NaN,
+      pickerOptions: {
+				disabledDate(time) {
+					let curDate = moment('2024-01-31').valueOf();
+          // console.log(curDate,'=====curDate');
+					let three = 730 * 24 * 3600 * 1000;
+					let threeMonths = curDate - three;
+					return (
+						time.getTime() > Date.now() - 8.64e6 ||
+						time.getTime() < threeMonths
+					);
+				}
+			},
       iframeWin: {},
       src:'',
       value1: "", // 日
@@ -55,8 +71,14 @@ export default {
     };
   },
   mounted() {
+    if( typeof this.a === 'number'){
+      console.log('11');
+    }else {
+      console.log('2');
+    }
   },
   methods: {
+
     baidu(){
       this.src = 'https://blog.csdn.net/u010227042/article/details/119839361?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-119839361-blog-88070050.235%5Ev40%5Epc_relevant_anti_vip&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-119839361-blog-88070050.235%5Ev40%5Epc_relevant_anti_vip&utm_relevant_index=5'
       this.iframeWin.postMessage({

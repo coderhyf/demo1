@@ -12,7 +12,7 @@
       <!--          </el-popover>-->
     </div>
     <div style="display: inline-block; width: 100%">
-      <el-table
+      <u-table
         :data="tableData"
         border
         @selection-change="handleSelectionChange"
@@ -25,16 +25,17 @@
         size="mini"
         ref="trendsTable"
         class="tableAuto"
+        :width="'100%'"
       >
         <slot name="time" />
-        <el-table-column
+        <u-table-column
           type="selection"
           width="55"
           align="center"
           :reserve-selection="true"
           v-if="chekoutSow"
         />
-        <el-table-column
+        <u-table-column
           type="index"
           :index="indexMethod"
           align="center"
@@ -44,26 +45,20 @@
         />
         <!-- -->
         <template v-for="(item, index) in newList">
-          <el-table-column
+          <u-table-column
             :align="item.align ? item.align : 'left'"
             :key="index"
             :prop="item.prop"
             :label="item.label"
-            :fixed="item.fixed"
-            :width="item.width"
-            :min-width="
-              item.minWidth
-                ? item.minWidth
-                : flexColumnWidth(item.prop || item.slot, item.label, tableData)
-            "
+            :fixed="item.fixed" 
           >
             <template slot-scope="scope">
               <slot v-if="item.slot" :row="scope.row" :name="item.slot"></slot>
               <span v-else>{{ scope.row[item.prop] }}</span>
             </template>
-          </el-table-column>
+          </u-table-column>
         </template>
-      </el-table>
+      </u-table>
     </div>
     <el-pagination
       layout="total, sizes, prev, pager, next, jumper"
@@ -169,6 +164,14 @@ export default {
     // this.columns = columns;
   },
   methods: {
+    labelHead(h, { column }) {
+      let l = column.label.length; // 表头label长度
+      let f = 30; // 根据需要定义标尺，直接使用字体大小确定就行，也可以根据需要定义
+      column.minWidth = f * (l + 2); //加上一个文字长度
+      return h("div", { class: "table-head", style: { width: "100%" } }, [
+        column.label,
+      ]);
+    },
     flexColumnWidth(prop, label, tableData) {
       console.log("2222");
       prop = prop + "";
@@ -220,18 +223,18 @@ export default {
     },
     clickRow(row) {
       // event.preventDefault(); //阻止默认行为
-      this.$refs.trendsTable.toggleRowSelection(row);
+      // this.$refs.trendsTable.toggleRowSelection(row);
     },
     celldblclick(row, column, cell, event) {
       if (event.type === "dblclick") {
-        this.$copyText(event.target.innerText).then(
-          (e) => {
-            console.log("复制成功：", e);
-          },
-          (e) => {
-            console.log("复制失败：", e);
-          }
-        );
+        // this.$copyText(event.target.innerText).then(
+        //   (e) => {
+        //     console.log("复制成功：", e);
+        //   },
+        //   (e) => {
+        //     console.log("复制失败：", e);
+        //   }
+        // );
         // let save = function (e) {
         //   e.clipboardData.setData("text/plain", event.target.innerText);
         //   e.preventDefault(); //阻止默认行为
@@ -319,12 +322,16 @@ export default {
 </script>
 
 <style>
-.el-table .cell,
-.el-table th > .cell {
-  display: inline-block;
-  white-space: nowrap;
-  width: auto;
-  overflow: auto;
+.el-table th.el-table__cell > .cell {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    /* vertical-align: middle; */
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    /* white-space: nowrap !important; */
 }
 /* .el-table /deep/ th {
   padding: 0;

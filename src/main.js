@@ -9,6 +9,9 @@ import 'vue-video-player/src/custom-theme.css'
 import 'video.js/dist/video-js.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import './utils/directive'
+import UmyUi from 'umy-ui'
+import 'umy-ui/lib/theme-chalk/index.css';// 引入样式
+Vue.use(UmyUi);
 // import VueClipBoard from 'vue-clipboard2'
 // Vue.use(VueClipBoard)
 // import Plugin from 'v-fit-columns'

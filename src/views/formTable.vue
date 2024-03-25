@@ -135,7 +135,8 @@ export default {
         { userId: "000", username: "名字1", id: 3, username2: "名字4", id: 1 },
         { userId: "3333", username: "名字0", id: 3, username2: "名字4", id: 1 },
         {
-          userId: "我我SU我2我我SU我222222222gg222222我我SU我222222222gg222222我我SU我222222222gg222222我我SU我222222222gg222222我我SU我222222222gg22222222222222gg222222",
+          userId:
+            "我我SU我2我我SU我222222222gg222222我我SU我222222222gg222222我我SU我222222222gg222222我我SU我222222222gg222222我我SU我222222222gg22222222222222gg222222",
           username: "@SWWSS000000%@@@~~~222222222gg222222",
           id: 3,
           username2: "名字4",
@@ -153,7 +154,6 @@ export default {
     };
   },
   methods: {
-    
     viewId(row) {
       console.log(row, "=====rows");
     },
@@ -184,6 +184,9 @@ export default {
       }, 1000);
     },
     viewDetails(row) {
+      console.log(row,'-====rows');
+      // this.$refs.tables.$refs.singleTable.toggleRowSelection();
+
       this.dialogVisible = true;
       this.formModel = row;
     },
