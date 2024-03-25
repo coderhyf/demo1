@@ -1,4 +1,5 @@
 // 创建点
+// ces2
 export const createdRadio = (obj) => {
   return new AMap.Marker ({
     ...obj,
